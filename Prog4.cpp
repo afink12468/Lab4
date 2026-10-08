@@ -229,10 +229,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
  
-    if (!(load > 0.0 && load <= 1.0)) {  // this option checks if load value is between 0 and 1.
-        cerr << "error: -load value must be > 0.0 and <= 1.0" << endl;
-        return 1;
-    }
  
   hashtable H;
     
