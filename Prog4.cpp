@@ -24,19 +24,19 @@ using std::setprecision;
 typedef unsigned long ulong;
  
 struct credentials {
-    void set_salt(string &);
-    void set_hash(string &);
+  void set_salt(string &);
+  void set_hash(string &);
  
-    void operator=(const credentials &);
-    bool operator==(const credentials &);
+  void operator=(const credentials &);
+  bool operator==(const credentials &);
  
-    string salt;
-    ulong password_hash;
+  string salt;
+  ulong password_hash;
 };
  
 void credentials::set_salt(string &username) { // this function uses the "sometimes" salt to generate different salt values for every instance that 2 passwords are the same. If the resulting value is not readable it prints the '?' character instead.
  
-    salt = "S0m3t1M3$";
+  salt = "S0m3t1M3$";
  
 for (int i = 0; i < (int)salt.size(); i++) {
  
@@ -74,7 +74,7 @@ istream &operator>>(istream &in, credentials &login) {
 in >> login.salt;
 in >> std::hex >> login.password_hash;
 in >> std::dec;
- return in;
+  return in;
 }
  
 ostream &operator<<(ostream &out, const credentials &login) {
@@ -84,7 +84,8 @@ ostream &operator<<(ostream &out, const credentials &login) {
   return out;
 }
  
-typedef unordered_map<string, credentials> hashtable;
+
+typedef unordered_map<string,credentials> hashtable;
  
 void write_hashtable(hashtable &H, bool verbose) { // This function saves the hashtable to the password.txt file. Every username and password gets paired, a hash gets computed, and stores the hash value under the username. Every entry gets written in the txt file.
  string username;
@@ -233,12 +234,12 @@ int main(int argc, char *argv[]) {
         return 1;
     }
  
-    hashtable H;
+  hashtable H;
     
     H.max_load_factor(load);
  
     if (create_mode) {  // this writes the password.txt file from the hashtable.
-   write_hashtable(H, verbose);
+    write_hashtable(H, verbose);
     }
  
     else if (check_mode) { // This check is to see if every written username or password should have access or not.
